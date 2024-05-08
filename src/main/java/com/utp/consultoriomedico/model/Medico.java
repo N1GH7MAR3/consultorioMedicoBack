@@ -1,4 +1,4 @@
-package com.utp.consultoriomedico.entity;
+package com.utp.consultoriomedico.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

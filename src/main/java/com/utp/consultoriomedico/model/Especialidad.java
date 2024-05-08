@@ -1,4 +1,4 @@
-package com.utp.consultoriomedico.entity;
+package com.utp.consultoriomedico.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,17 +11,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "consultorio")
+@Table(name = "especialidad")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Consultorio {
+public class Especialidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String numeroConsultorio;
-    private String piso;
-    private String ala;
+    private String nombre;
 
 }

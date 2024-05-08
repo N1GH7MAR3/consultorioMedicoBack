@@ -18,7 +18,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Rol {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
