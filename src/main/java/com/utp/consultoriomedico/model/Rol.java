@@ -1,7 +1,7 @@
-package com.utp.consultoriomedico.entity;
+package com.utp.consultoriomedico.model;
 
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +21,7 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "tipo_rol")
     private String tipoRol;
 
 }

@@ -2,8 +2,7 @@ package com.utp.consultoriomedico.service.impl;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 import com.utp.consultoriomedico.model.Especialidad;
@@ -18,27 +17,25 @@ public class EspecialidadServiceImpl implements EspecialidadService {
         this.especialidadRepository = especialidadRepository;
     }
 
-    public ResponseEntity<List<Especialidad>> getAllEspecialidades() {
-        return ResponseEntity.status(HttpStatus.OK).body(especialidadRepository.findAll());
+    @Override
+    public List<Especialidad> getAllEspecialidades() {
+        return especialidadRepository.findAll();
     }
 
-    public ResponseEntity<Especialidad> findEspecialidadById(int id) {
-        return ResponseEntity.status(HttpStatus.OK).body(especialidadRepository.findById(id).get());
+    @Override
+    public Especialidad findEspecialidadById(int id) {
+        return especialidadRepository.findById(id).get();
     }
 
-    public ResponseEntity<Especialidad> saveEspecialidad(Especialidad especialidad) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(especialidadRepository.save(especialidad));
+    @Override
+    public void saveEspecialidad(Especialidad especialidad) {
+        especialidadRepository.save(especialidad);
     }
 
-    public ResponseEntity<Especialidad> updateEspecialidad(int id, Especialidad especialidad) {
-        Especialidad especialidadActual = especialidadRepository.findById(id).get();
-        especialidadActual.setNombre(especialidad.getNombre());
-        return ResponseEntity.status(HttpStatus.OK).body(especialidadRepository.save(especialidadActual));
-    }
-
-    public ResponseEntity<String> deleteEspecialidad(int id) {
+    @Override
+    public void deleteEspecialidad(int id) {
         especialidadRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Especialidad eliminada");
     }
 
+    
 }

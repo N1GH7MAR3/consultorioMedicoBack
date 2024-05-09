@@ -1,5 +1,6 @@
-package com.utp.consultoriomedico.entity;
+package com.utp.consultoriomedico.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,9 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "nombre")
     private String usuario;
+    @Column(name = "contrasenia")
     private String contrasenia;
     @ManyToOne
     private Rol rol;

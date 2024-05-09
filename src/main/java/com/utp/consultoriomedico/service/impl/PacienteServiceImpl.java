@@ -1,9 +1,8 @@
 package com.utp.consultoriomedico.service.impl;
 
+
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.utp.consultoriomedico.model.Paciente;
@@ -18,31 +17,26 @@ public class PacienteServiceImpl implements PacienteService {
         this.pacienteRepository = pacienteRepository;
     }
 
-    public ResponseEntity<List<Paciente>> findAllPacientes() {
-        List<Paciente> pacientes = pacienteRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(pacientes);
-    }
-    
-    public ResponseEntity<Paciente> findPacienteById(int id) {
-        Paciente paciente = pacienteRepository.findById(id).get();
-        return ResponseEntity.status(HttpStatus.OK).body(paciente);
+    @Override
+    public List<Paciente> getAllPacientes() {
+        return pacienteRepository.findAll();
     }
 
-    public ResponseEntity<Paciente> savePaciente(Paciente paciente) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(pacienteRepository.save(paciente));
+    @Override
+    public Paciente findPacienteById(int id) {
+        return pacienteRepository.findById(id).get();
     }
 
-    public ResponseEntity<Paciente> updatePaciente(int id, Paciente paciente) {
-        Paciente pacienteActual = pacienteRepository.findById(id).get();
-        pacienteActual.setNombre(paciente.getNombre());
-        pacienteActual.setApellido(paciente.getApellido());
-        pacienteActual.setDni(paciente.getDni());
-        pacienteActual.setFechaNacimiento(paciente.getFechaNacimiento());
-        pacienteActual.setDireccion(paciente.getDireccion());
-        pacienteActual.setTelefono(paciente.getTelefono());
-        pacienteActual.setEmail(paciente.getEmail());
-        pacienteActual.setUsuario(paciente.getUsuario());
-        return ResponseEntity.status(HttpStatus.OK).body(pacienteRepository.save(pacienteActual));
+    @Override
+    public void savePaciente(Paciente paciente) {
+        pacienteRepository.save(paciente);
     }
+
+    @Override
+    public void deletePaciente(int id) {
+        pacienteRepository.deleteById(id);
+    }
+
     
+
 }

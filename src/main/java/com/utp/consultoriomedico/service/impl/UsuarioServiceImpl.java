@@ -2,11 +2,7 @@ package com.utp.consultoriomedico.service.impl;
 
 import java.util.List;
 
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 
 import com.utp.consultoriomedico.model.Usuario;
 import com.utp.consultoriomedico.repository.UsuarioRepository;
@@ -20,25 +16,24 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public ResponseEntity<List<Usuario>> getAllUsuarios() {
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.findAll());
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return usuarioRepository.findAll();
     }
 
-    public ResponseEntity<Usuario> saveUsuario(Usuario usuario) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
+    @Override
+    public Usuario findUsuarioById(int id) {
+        return usuarioRepository.findById(id).get();
     }
 
-    public ResponseEntity<Usuario> updateUsuario(int id, Usuario usuario) {
-        Usuario usuarioActual = usuarioRepository.findById(id).get();
-        usuarioActual.setUsuario(usuario.getUsuario());
-        usuarioActual.setContrasenia(usuario.getContrasenia());
-        usuarioActual.setRol(usuario.getRol());
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioRepository.save(usuarioActual));
+    @Override
+    public void saveUsuario(Usuario usuario) {
+        usuarioRepository.save(usuario);
     }
 
-    public ResponseEntity<String> deleteUsuario(int id) {
+    @Override
+    public void deleteUsuario(int id) {
         usuarioRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Usuario eliminado");
     }
 
 }

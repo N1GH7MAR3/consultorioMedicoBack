@@ -1,5 +1,6 @@
-package com.utp.consultoriomedico.entity;
+package com.utp.consultoriomedico.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,9 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name="hora_inicio")
     private String horaInicio;
+    @Column(name="hora_fin")
     private String horaFin;
 
 }

@@ -2,9 +2,6 @@ package com.utp.consultoriomedico.service.impl;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.utp.consultoriomedico.model.Rol;
@@ -20,28 +17,24 @@ public class RolServiceImpl implements RolService {
         this.rolRepository = rolRepository;
     }
 
-    public ResponseEntity<List<Rol>> getAllRoles() {
-        return ResponseEntity.status(HttpStatus.OK).body(rolRepository.findAll());
+    @Override
+    public List<Rol> getAllRoles() {
+        return rolRepository.findAll();
     }
 
-    public ResponseEntity<Rol> getRolById(int id) {
-        return ResponseEntity.status(HttpStatus.OK).body(rolRepository.findById(id).get());
+    @Override
+    public Rol findRolById(int id) {
+        return rolRepository.findById(id).get();
     }
 
-    public ResponseEntity<Rol> saveRol(Rol rol) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(rolRepository.save(rol));
-    }
-    
-    public ResponseEntity<Rol> updateRol(int id, Rol rol) {
-        Rol rolActual = rolRepository.findById(id).get();
-        rolActual.setTipoRol(rol.getTipoRol());
-        return ResponseEntity.status(HttpStatus.OK).body(rolRepository.save(rolActual));
+    @Override
+    public void saveRol(Rol rol) {
+        rolRepository.save(rol);
     }
 
-    public ResponseEntity<String> deleteRol(int id) {
+    @Override
+    public void deleteRol(int id) {
         rolRepository.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Rol eliminado");
     }
-    
 
 }
